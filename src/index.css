@@ -1,5 +1,6 @@
 :root {
   --green: rgb(39, 189, 39);
+  --light-green: rgba(181, 250, 181, 0.5);
 }
 
 * {
@@ -16,16 +17,91 @@ h2 {
   margin-bottom: 1rem;
 }
 
+/* Plant List Grid */
+.plant-list {
+  display: grid;
+  gap: 2rem;
+  padding: 1rem 0;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+/* Plant Card Styling */
+.plant-item {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.plant-item:hover {
+  transform: translateY(-4px);
+}
+
+.plant-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.plant-item h4 {
+  padding: 0.75rem 1rem 0;
+  font-size: 1.1rem;
+}
+
+.plant-item p {
+  padding: 0.5rem 1rem;
+  color: #555;
+}
+
+.plant-item button {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: forestgreen;
+  color: white;
+  border: none;
+  border-top: 1px solid #eee;
+  cursor: pointer;
+}
+
+.plant-item button:hover {
+  background-color: #2da72d;
+}
+
+.plant-item button.in-stock {
+  background-color: var(--green);
+  color: white;
+}
+
+.plant-item button.out-of-stock {
+  background-color: #ff6b6b;
+  color: black;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+  .plant-list {
+    grid-template-columns: 1fr;
+  }
+}
+
 button {
   padding: 0.25rem 1rem;
   font-family: inherit;
   border: none;
   cursor: pointer;
+  transition: all 0.2s;
 }
 
 button.primary {
   background-color: var(--green);
   color: white;
+}
+
+button.primary:hover {
+  opacity: 0.9;
 }
 
 .app {
@@ -54,17 +130,21 @@ main {
 .new-plant-form {
   padding: 2rem 1rem;
   margin: 2rem 0;
-  background-color: rgba(181, 250, 181, 0.5);
+  background-color: var(--light-green);
+  border-radius: 8px;
 }
 
 .new-plant-form form {
   display: flex;
   justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .new-plant-form input {
-  margin-right: 2rem;
+  margin-right: 0;
   flex: 1;
+  min-width: 200px;
 }
 
 .new-plant-form button {
@@ -72,9 +152,14 @@ main {
 }
 
 .searchbar {
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
+  padding: 1rem 0;
+}
+
+.searchbar input {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  display: block;
 }
 
 label {
@@ -83,10 +168,10 @@ label {
 }
 
 input {
-  padding: 0.25rem;
+  padding: 0.5rem;
   border: none;
   font-family: inherit;
-  font-size: 1.2em;
+  font-size: 1em;
   border-bottom: 2px solid gray;
   transition: all 0.2s;
   width: 100%;
@@ -97,41 +182,8 @@ input:focus {
   border-bottom: 2px solid var(--green);
 }
 
-.cards {
-  list-style: none;
-}
-
-.card {
-  margin: 1rem;
-}
-
-.card img {
-  width: 100%;
-}
-
-.card button {
-  margin-top: 0.5rem;
-}
-
 @media (min-width: 768px) {
-  .cards {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .card {
-    width: calc(33% - 2rem);
-  }
-}
-
-@media (min-width: 1024px) {
-  .card {
-    width: calc(25% - 2rem);
-  }
-}
-
-@media (min-width: 1200px) {
-  .card {
-    width: calc(20% - 2rem);
+  .new-plant-form form {
+    flex-wrap: nowrap;
   }
 }
